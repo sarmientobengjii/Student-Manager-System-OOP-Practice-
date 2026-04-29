@@ -1,20 +1,14 @@
 import model.*;
 
+import java.util.ArrayList;
 import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
 
-        Scanner scanner = new Scanner(System.in);
-
-        System.out.println("Enter name: ");
-        String name = scanner.nextLine();
-
-        System.out.println("Enter grade: ");
-        double grade = scanner.nextDouble();
-
-        //WHILE LOOP
-        boolean running = true;
+        ArrayList<Student> students = new ArrayList<>(); //ARRAYLIST
+        Scanner scanner = new Scanner(System.in); //Input/Output
+        boolean running = true; //WHILE LOOP
 
         while (running) {
             System.out.println("\n1. Add Student");
@@ -26,27 +20,43 @@ public class Main {
 
             //SAFE HANDLING AND SCALABLE LOGIC
             if (choice == 1) {
-                System.out.println("Adding Student...");
+
+                System.out.println("Enter name: ");
+                String name = scanner.nextLine();
+
+                System.out.println("Enter grade: ");
+                double grade = scanner.nextDouble();
+                scanner.nextLine();
+
+                Student s;
+
+                if (grade >= 90) {
+                    s = new HonorStudent(name, grade);
+                } else if (grade < 75) {
+                    s = new FailingStudent(name, grade);
+                } else {
+                    s = new Student(name, grade);
+                }
+
+                students.add(s);
+
+                System.out.println("Student Added!");
+
             } else if (choice == 2) {
-                System.out.println("Viewing Students...");
+
+                if (students.isEmpty()) {
+                    System.out.println("No students yet.");
+                } else {
+                    for (Student s : students) {
+                        s.introduce();
+                    }
+                }
             } else if (choice == 3) {
-                running = false;
+                System.out.println("Program Terminated.");
             } else {
                 System.out.println("Invalid choice. Try again.");
             }
         }
-
-        Student s;
-
-        if (grade >= 90) {
-            s = new HonorStudent(name, grade);
-        } else if (grade < 75) {
-            s = new FailingStudent(name, grade);
-        } else {
-            s = new Student(name, grade);
-        }
-
-        s.introduce();
     }
 }
 

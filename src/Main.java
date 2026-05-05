@@ -8,12 +8,11 @@ public class Main {
 
         ArrayList<Student> students = new ArrayList<>(); //ARRAYLIST
         Scanner scanner = new Scanner(System.in); //Input/Output
+
         boolean running = true; //WHILE LOOP
 
         while (running) {
-            System.out.println("\n1. Add Student");
-            System.out.println("2. View Students");
-            System.out.println("3. Exit");
+            showMenu();
 
             int choice = scanner.nextInt();
             scanner.nextLine();
@@ -52,11 +51,35 @@ public class Main {
                     }
                 }
             } else if (choice == 3) {
+                System.out.println("Enter name to search: ");
+                String searchName = scanner.nextLine();
+
+                boolean found = false;
+
+                for (Student s : students) {
+
+                    if (s.getName().equalsIgnoreCase(searchName)) {
+                        s.introduce();
+                        found = true;
+                        break;
+                    }
+                } if (!found) {
+                    System.out.println("Student not found! Please try again.");
+                }
+            } else if (choice == 4) {
                 System.out.println("Program Terminated.");
             } else {
                 System.out.println("Invalid choice. Try again.");
             }
         }
+    }
+
+    //WILL REFACTOR THE CODE AND MOVING OUT THE LOGIC FROM MAIN() INTO METHOD
+    public static void showMenu() {
+        System.out.println("\n1. Add Student");
+        System.out.println("2. View Students");
+        System.out.println("3. Search Student");
+        System.out.println("4. Exit");
     }
 }
 

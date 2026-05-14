@@ -25,21 +25,8 @@ public class Main {
                 viewStudents(students);
 
             } else if (choice == 3) {
-                System.out.println("Enter name to search: ");
-                String searchName = scanner.nextLine();
+                searchStudent(scanner, students);
 
-                boolean found = false;
-
-                for (Student s : students) {
-
-                    if (s.getName().equalsIgnoreCase(searchName)) {
-                        s.introduce();
-                        found = true;
-                        break;
-                    }
-                } if (!found) {
-                    System.out.println("Student not found! Please try again.");
-                }
             } else if (choice == 4) {
                 running = false;
                 System.out.println("Program Terminated.");
@@ -87,6 +74,26 @@ public class Main {
             for (Student s : students) {
                 s.introduce();
             }
+        }
+    }
+
+    public static void searchStudent(Scanner scanner, ArrayList<Student> students) {
+        System.out.println("Enter name to search: ");
+        String searchName = scanner.nextLine();
+
+        boolean found = false;
+
+        for (Student s : students) {
+
+            if (s.getName().equalsIgnoreCase(searchName)) {
+                s.introduce();
+                found = true;
+                break;
+            }
+        }
+
+        if (!found) {
+            System.out.println("Student not found! Please try again.");
         }
     }
 }

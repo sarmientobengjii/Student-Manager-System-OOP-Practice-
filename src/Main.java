@@ -22,14 +22,8 @@ public class Main {
                 addStudent(scanner, students);
 
             } else if (choice == 2) {
+                viewStudents(students);
 
-                if (students.isEmpty()) {
-                    System.out.println("No students yet.");
-                } else {
-                    for (Student s : students) {
-                        s.introduce();
-                    }
-                }
             } else if (choice == 3) {
                 System.out.println("Enter name to search: ");
                 String searchName = scanner.nextLine();
@@ -84,6 +78,16 @@ public class Main {
         students.add(s);
 
         System.out.println("Student Added!");
+    }
+
+    public static void viewStudents(ArrayList<Student> students) {
+        if (students.isEmpty()) {
+            System.out.println("No students yet.");
+        } else {
+            for (Student s : students) {
+                s.introduce();
+            }
+        }
     }
 }
 

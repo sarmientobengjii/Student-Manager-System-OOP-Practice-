@@ -19,27 +19,7 @@ public class Main {
 
             //SAFE HANDLING AND SCALABLE LOGIC
             if (choice == 1) {
-
-                System.out.println("Enter name: ");
-                String name = scanner.nextLine();
-
-                System.out.println("Enter grade: ");
-                double grade = scanner.nextDouble();
-                scanner.nextLine();
-
-                Student s;
-
-                if (grade >= 90) {
-                    s = new HonorStudent(name, grade);
-                } else if (grade < 75) {
-                    s = new FailingStudent(name, grade);
-                } else {
-                    s = new Student(name, grade);
-                }
-
-                students.add(s);
-
-                System.out.println("Student Added!");
+                addStudent(scanner, students);
 
             } else if (choice == 2) {
 
@@ -67,6 +47,7 @@ public class Main {
                     System.out.println("Student not found! Please try again.");
                 }
             } else if (choice == 4) {
+                running = false;
                 System.out.println("Program Terminated.");
             } else {
                 System.out.println("Invalid choice. Try again.");
@@ -74,12 +55,35 @@ public class Main {
         }
     }
 
-    //WILL REFACTOR THE CODE AND MOVING OUT THE LOGIC FROM MAIN() INTO METHOD
     public static void showMenu() {
         System.out.println("\n1. Add Student");
         System.out.println("2. View Students");
         System.out.println("3. Search Student");
         System.out.println("4. Exit");
+    }
+
+    public static void addStudent(Scanner scanner, ArrayList<Student> students) {
+
+        System.out.println("Enter name: ");
+        String name = scanner.nextLine();
+
+        System.out.println("Enter grade: ");
+        double grade = scanner.nextDouble();
+        scanner.nextLine();
+
+        Student s;
+
+        if (grade >= 90) {
+            s = new HonorStudent(name, grade);
+        } else if (grade < 75) {
+            s = new FailingStudent(name, grade);
+        } else {
+            s = new Student(name, grade);
+        }
+
+        students.add(s);
+
+        System.out.println("Student Added!");
     }
 }
 

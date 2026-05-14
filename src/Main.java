@@ -37,6 +37,10 @@ public class Main {
                     System.out.println("Program Terminated.");
                     break;
 
+                case 5:
+                    deleteStudent(scanner, students);
+                    break;
+
                 default:
                     System.out.println("Invalid choice. Try again.");
             }
@@ -48,6 +52,7 @@ public class Main {
         System.out.println("2. View Students");
         System.out.println("3. Search Student");
         System.out.println("4. Exit");
+        System.out.println("5. Delete Student");
     }
 
     public static void addStudent(Scanner scanner, ArrayList<Student> students) {
@@ -101,6 +106,26 @@ public class Main {
 
         if (!found) {
             System.out.println("Student not found! Please try again.");
+        }
+    }
+
+    public static void deleteStudent(Scanner scanner, ArrayList<Student> students) {
+        System.out.println("Enter name to delete: ");
+        String deleteName = scanner.nextLine();
+
+        boolean found = false;
+
+        for (Student s : students) {
+            if (s.getName().equalsIgnoreCase(deleteName)) {
+                students.remove(s);
+                found = true;
+                System.out.println("Student successfully deleted.");
+                break;
+            }
+        }
+
+        if (!found) {
+            System.out.println("Student not found.");
         }
     }
 }

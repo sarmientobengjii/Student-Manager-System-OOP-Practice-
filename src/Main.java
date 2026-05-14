@@ -1,5 +1,6 @@
 import model.*;
 
+import java.sql.SQLOutput;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -18,20 +19,26 @@ public class Main {
             scanner.nextLine();
 
             //SAFE HANDLING AND SCALABLE LOGIC
-            if (choice == 1) {
-                addStudent(scanner, students);
+            switch(choice) {
+                case 1:
+                    addStudent(scanner, students);
+                    break;
 
-            } else if (choice == 2) {
-                viewStudents(students);
+                case 2:
+                    viewStudents(students);
+                    break;
 
-            } else if (choice == 3) {
-                searchStudent(scanner, students);
+                case 3:
+                    searchStudent(scanner, students);
+                    break;
 
-            } else if (choice == 4) {
-                running = false;
-                System.out.println("Program Terminated.");
-            } else {
-                System.out.println("Invalid choice. Try again.");
+                case 4:
+                    running = false;
+                    System.out.println("Program Terminated.");
+                    break;
+
+                default:
+                    System.out.println("Invalid choice. Try again.");
             }
         }
     }

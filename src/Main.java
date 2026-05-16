@@ -1,6 +1,5 @@
 import model.*;
 
-import java.sql.SQLOutput;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -33,12 +32,16 @@ public class Main {
                     break;
 
                 case 4:
-                    running = false;
-                    System.out.println("Program Terminated.");
+                    deleteStudent(scanner, students);
                     break;
 
                 case 5:
-                    deleteStudent(scanner, students);
+                    updateStudent(scanner, students);
+                    break;
+
+                case 6:
+                    running = false;
+                    System.out.println("Program Terminated.");
                     break;
 
                 default:
@@ -51,8 +54,10 @@ public class Main {
         System.out.println("\n1. Add Student");
         System.out.println("2. View Students");
         System.out.println("3. Search Student");
-        System.out.println("4. Exit");
-        System.out.println("5. Delete Student");
+        System.out.println("4. Delete Student");
+        System.out.println("5. Update Student");
+        System.out.println("6. Exit");
+
     }
 
     public static void addStudent(Scanner scanner, ArrayList<Student> students) {
@@ -120,6 +125,36 @@ public class Main {
                 students.remove(s);
                 found = true;
                 System.out.println("Student successfully deleted.");
+                break;
+            }
+        }
+
+        if (!found) {
+            System.out.println("Student not found.");
+        }
+    }
+
+    public static void updateStudent(Scanner scanner, ArrayList<Student> students) {
+        System.out.println("Enter name of student to update: ");
+        String updateName = scanner.nextLine();
+
+        boolean found = false;
+
+        for (Student s : students) {
+            if (s.getName().equalsIgnoreCase(updateName)) {
+
+                System.out.println("Enter new name: ");
+                String newName = scanner.nextLine();
+
+                System.out.println("Enter new grade: ");
+                double newGrade = scanner.nextDouble();
+                scanner.nextLine();
+
+                s.setName(newName);
+                s.setGrade(newGrade);
+
+                found = true;
+                System.out.println("Student successfully updated.");
                 break;
             }
         }

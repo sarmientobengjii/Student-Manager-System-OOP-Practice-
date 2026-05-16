@@ -15,7 +15,17 @@ public class Student {
     }
 
     public double getGrade() {
+
         return grade;
+    }
+
+    //SETTERS
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public void setGrade(double grade) {
+        this.grade = grade;
     }
 
     public String getStatus() {

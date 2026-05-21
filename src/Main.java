@@ -40,6 +40,10 @@ public class Main {
                     break;
 
                 case 6:
+                    sortStudentsByGrade(students);
+                    break;
+
+                case 7:
                     running = false;
                     System.out.println("Program Terminated.");
                     break;
@@ -56,7 +60,8 @@ public class Main {
         System.out.println("3. Search Student");
         System.out.println("4. Delete Student");
         System.out.println("5. Update Student");
-        System.out.println("6. Exit");
+        System.out.println("6. Sort Students by Grade");
+        System.out.println("7. Exit");
 
     }
 
@@ -172,6 +177,12 @@ public class Main {
         if (!found) {
             System.out.println("Student not found.");
         }
+    }
+
+    public static void sortStudentsByGrade(ArrayList<Student> students) {
+        students.sort((s1, s2) -> Double.compare(s2.getGrade(), s1.getGrade()));
+
+        System.out.println("Students sorted by grade from highest to lowest.");
     }
 }
 

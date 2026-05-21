@@ -69,6 +69,11 @@ public class Main {
         double grade = scanner.nextDouble();
         scanner.nextLine();
 
+        if (grade < 0 || grade > 100) {
+            System.out.println("Invalid grade input. Please try again.");
+            return;
+        }
+
         Student s;
 
         if (grade >= 90) {
@@ -149,6 +154,11 @@ public class Main {
                 System.out.println("Enter new grade: ");
                 double newGrade = scanner.nextDouble();
                 scanner.nextLine();
+
+                if (newGrade < 0 || newGrade > 100) {
+                    System.out.println("Invalid grade input. Please try again.");
+                    return;
+                }
 
                 s.setName(newName);
                 s.setGrade(newGrade);
